@@ -1,5 +1,5 @@
-# Use the .NET 8 SDK base image
-FROM mcr.microsoft.com/dotnet/sdk:8.0
+# Use the .NET 9 SDK base image
+FROM mcr.microsoft.com/dotnet/sdk:9.0
 
 # Install necessary packages
 RUN apt-get update && \
@@ -21,14 +21,14 @@ RUN curl -sSL https://packages.microsoft.com/config/ubuntu/20.04/packages-micros
 # Install Ollama
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
-# Install .NET SDK 8.0 only if not already installed
-RUN if ! dotnet --version 2>/dev/null | grep -q '^8'; then \
+# Install .NET SDK 9.0 only if not already installed
+RUN if ! dotnet --version 2>/dev/null | grep -q '^9'; then \
     curl -sSL https://dot.net/v1/dotnet-install.sh -o dotnet-install.sh && \
     chmod +x dotnet-install.sh && \
-    ./dotnet-install.sh --channel 8.0 --install-dir /usr/share/dotnet && \
+    ./dotnet-install.sh --channel 9.0 --install-dir /usr/share/dotnet && \
     rm dotnet-install.sh; \
     else \
-    echo ".NET SDK 8.0 is already installed"; \
+    echo ".NET SDK 9.0 is already installed"; \
     fi
 
 # Create symbolic link only if it doesn't exist
