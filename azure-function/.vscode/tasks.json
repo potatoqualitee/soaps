@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "func: host start",
+      "type": "shell",
+      "command": "func host start --powershell --verbose --watch",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/functions",
+        "env": {
+          "DOTNET_ROOT": "/usr/share/dotnet",
+          "DOTNET_FRAMEWORK_VERSION": "8.0.0"
+        }
+      },
+      "problemMatcher": [
+        {
+          "owner": "azureFunctions",
+          "pattern": [
+            {
+              "regexp": "^(.+\\.ps1)\\((\\d+),(\\d+)\\): (.*)$",
+              "file": 1,
+              "line": 2,
+              "column": 3,
+              "message": 4
+            },
+            {
+              "regexp": "^.*at (.+\\.ps1): line (\\d+)",
+              "file": 1,
+              "line": 2
+            }
+          ],
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}/functions"
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^.*Worker process started and initialized.*",
+            "endsPattern": "^.*Host lock lease acquired by instance ID.*"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch PS Functions",
+      "type": "PowerShell",
+      "request": "launch",
+      "preLaunchTask": "func: host start"
+    }
+  ]
+}
