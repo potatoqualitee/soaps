@@ -1,0 +1,88 @@
+{
+    "name": "Azure Functions",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "forwardPorts": [
+        7071,
+        8888
+    ],
+    "portsAttributes": {
+        "7071": {
+            "protocol": "http",
+            "label": "Functions App"
+        },
+        "8888": {
+            "protocol": "http",
+            "label": "Jupyter"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "polyglot-notebook.defaultKernel": "pwsh",
+                "polyglot-notebook.defaultNotebookLanguage": "pwsh",
+                "powershell.powerShellAdditionalExePaths": {
+                    "PowerShell": "/usr/bin/pwsh"
+                },
+                "terminal.integrated.shell.linux": "pwsh",
+                "powershell.powerShellDefaultVersion": "PowerShell",
+                "azureFunctions.pickProcessTimeout": 500,
+                "dotnet-interactive.kernelTransportDotnetPath": "/usr/share/dotnet/dotnet",
+                "terminal.integrated.profiles.linux": {
+                    "Azure Functions": {
+                        "path": "func",
+                        "args": [
+                            "host",
+                            "start",
+                            "--powershell",
+                            "--verbose",
+                            "--watch"
+                        ],
+                        "env": {
+                            "DOTNET_ROOT": "/usr/share/dotnet",
+                            "DOTNET_FRAMEWORK_VERSION": "8.0.0"
+                        },
+                        "icon": "zap"
+                    }
+                },
+                "terminal.integrated.defaultProfile.linux": "pwsh",
+                "terminal.integrated.cwd": "${workspaceFolder}/functions"
+            },
+            "extensions": [
+                "dbatools.search",
+                "rooveterinaryinc.roo-cline",
+                "ms-azuretools.vscode-azurefunctions",
+                "ms-dotnettools.dotnet-interactive-vscode",
+                "ms-vscode.powershell"
+            ]
+        }
+    },
+    "secrets": {
+        "API_KEY": {
+            "description": "This is your OpenAI, GitHub PAT, or Azure AI key for the corresponding API.",
+            "documentationUrl": "https://platform.openai.com/api-keys"
+        },
+        "API_BASE": {
+            "description": "If using Azure or GitHub, use this to specify the base URL.",
+            "documentationUrl": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger"
+        },
+        "MODEL": {
+            "description": "This is your model when using GitHub; defaults to gpt-4o-mini.",
+            "documentationUrl": "https://github.com/marketplace/models"
+        },
+        "AZURE_FUNCTION_KEY": {
+            "description": "This is your Azure Function key for authentication.",
+            "documentationUrl": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger#authorization-keys"
+        },
+        "AZURE_FUNCTION_API_BASE": {
+            "description": "Specify the base URL for your Azure Function API.",
+            "documentationUrl": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger"
+        }
+    },
+    "containerEnv": {
+        "AZURE_FUNCTION_API_BASE": "http://localhost:7071/api",
+        "MODEL": "gpt-4o"
+    },
+    "remoteUser": "vscode"
+}

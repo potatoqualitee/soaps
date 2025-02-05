@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "powershell",
+    "API_KEY": "60byaddabaddabing495bading",
+    "API_BASE": "https://example.openai.azure.com",
+    "AZURE_FUNCTION_KEY": "getThisintheAzurePortalorUsesomePS=="
+  }
+}

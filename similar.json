@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "properties": {
+        "keyword1": {
+            "type": "string",
+            "description": "First news topic you were provided to compare."
+        },
+        "keyword2": {
+            "type": "string",
+            "description": "Second news topic you were provided to compare."
+        },
+        "similar": {
+            "type": "boolean"
+        },
+        "explanation": {
+            "type": "string",
+            "description": "Reasoning behind the similarity or dissimilarity of the two keywords."
+        }
+    },
+    "required": [
+        "keyword1",
+        "keyword2",
+        "similar",
+        "explanation"
+    ],
+    "additionalProperties": false
+}

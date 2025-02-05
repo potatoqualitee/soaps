@@ -1,0 +1,36 @@
+{
+    "name": "Structured Outputs and PowerShell",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "powershell.powerShellAdditionalExePaths": {
+                    "PowerShell": "/usr/bin/pwsh"
+                },
+                "powershell.powerShellDefaultVersion": "PowerShell",
+                "terminal.integrated.profiles.linux": {
+                    "pwsh": {
+                        "path": "/usr/bin/pwsh",
+                        "icon": "terminal-powershell"
+                    }
+                },
+                "terminal.integrated.defaultProfile.linux": "pwsh"
+            },
+            "extensions": [
+                "ms-vscode.powershell",
+                "ms-dotnettools.dotnet-interactive-vscode",
+                "ms-windows-ai-studio.windows-ai-studio"
+            ]
+        }
+    },
+    "secrets": {
+        "OPENAI_API_KEY": {
+            "description": "Your OpenAI API key.",
+            "documentationUrl": "https://platform.openai.com/api-keys"
+        }
+    },
+    "postStartCommand": "pwsh -noprofile /home/devcontainer/setup.ps1"
+}
