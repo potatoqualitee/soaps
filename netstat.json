@@ -1,0 +1,72 @@
+{
+    "name": "netstat_active_connections",
+    "strict": false,
+    "schema": {
+        "type": "object",
+        "properties": {
+            "connections": {
+                "type": "array",
+                "description": "List of active network connections",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "protocol": {
+                            "type": "string",
+                            "description": "The protocol used (e.g., TCP, UDP)",
+                            "enum": [
+                                "TCP",
+                                "UDP"
+                            ]
+                        },
+                        "local_ip": {
+                            "type": "string",
+                            "description": "The local IP address"
+                        },
+                        "local_port": {
+                            "type": "integer",
+                            "description": "The local port number"
+                        },
+                        "foreign_ip": {
+                            "type": "string",
+                            "description": "The foreign (remote) IP address"
+                        },
+                        "foreign_port": {
+                            "type": "integer",
+                            "description": "The foreign (remote) port number"
+                        },
+                        "state": {
+                            "type": "string",
+                            "description": "The state of the TCP connection",
+                            "enum": [
+                                "ESTABLISHED",
+                                "SYN_SENT",
+                                "SYN_RECV",
+                                "FIN_WAIT1",
+                                "FIN_WAIT2",
+                                "TIME_WAIT",
+                                "CLOSED",
+                                "CLOSE_WAIT",
+                                "LAST_ACK",
+                                "LISTEN",
+                                "CLOSING"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "protocol",
+                        "local_ip",
+                        "local_port",
+                        "foreign_ip",
+                        "foreign_port",
+                        "state"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        },
+        "required": [
+            "connections"
+        ],
+        "additionalProperties": false
+    }
+}
